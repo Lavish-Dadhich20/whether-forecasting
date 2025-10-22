@@ -6,6 +6,7 @@ import { HourlyForecast } from "@/components/HourlyForecast";
 import { DailyForecast } from "@/components/DailyForecast";
 import { WeatherDetails } from "@/components/WeatherDetails";
 import { TemperatureChart } from "@/components/TemperatureChart";
+import { AirQuality } from "@/components/AirQuality";
 import { CitySearch } from "@/components/CitySearch";
 import { MapPin, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -131,6 +132,13 @@ const Index = () => {
           <DailyForecast daily={data.daily} />
           <TemperatureChart hourly={data.hourly} />
         </div>
+
+        {/* Air Quality */}
+        {data.airQuality && (
+          <div className="mb-8">
+            <AirQuality airQuality={data.airQuality} />
+          </div>
+        )}
 
         {/* Weather Details */}
         <div className="mb-8">

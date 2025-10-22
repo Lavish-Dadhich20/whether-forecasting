@@ -45,11 +45,26 @@ export interface HourlyWeather {
   pressure_msl: number[];
 }
 
+export interface AirQuality {
+  time: string;
+  pm10: number;
+  pm2_5: number;
+  carbon_monoxide: number;
+  nitrogen_dioxide: number;
+  sulphur_dioxide: number;
+  ozone: number;
+  european_aqi: number;
+  us_aqi: number;
+  dust: number;
+  uv_index: number;
+}
+
 export interface WeatherData {
   current: CurrentWeather;
   daily: DailyWeather;
   hourly: HourlyWeather;
   timezone: string;
+  airQuality?: AirQuality;
 }
 
 export const getWeatherDescription = (code: number): { description: string; icon: string } => {
@@ -112,5 +127,24 @@ export const fetchWeatherData = async (latitude: number, longitude: number): Pro
   }
 
   const data = await response.json();
+
+  // Fetch air quality data
+  try {
+    const airQualityParams = new URLSearchParams({
+      latitude: latitude.toString(),
+      longitude: longitude.toString(),
+      current: "pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,european_aqi,us_aqi,dust,uv_index",
+    });
+
+    const airQualityResponse = await fetch(`https://air-quality.openmeteo.com/v1/air-quality?${airQualityParams}`);
+    
+    if (airQualityResponse.ok) {
+      const airQualityData = await airQualityResponse.json();
+      data.airQuality = airQualityData.current;
+    }
+  } catch (error) {
+    console.log("Air quality data not available");
+  }
+
   return data;
 };
