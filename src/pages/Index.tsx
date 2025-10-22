@@ -8,6 +8,7 @@ import { WeatherDetails } from "@/components/WeatherDetails";
 import { TemperatureChart } from "@/components/TemperatureChart";
 import { AirQuality } from "@/components/AirQuality";
 import { CitySearch } from "@/components/CitySearch";
+import { ThemeSelector } from "@/components/ThemeSelector";
 import { MapPin, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -99,15 +100,18 @@ const Index = () => {
                 <span className="text-lg">{location.name}</span>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-white/70 text-sm">Last updated</p>
-              <p className="text-white font-medium">
-                {new Date(data.current.time).toLocaleTimeString('en-US', {
-                  hour: 'numeric',
-                  minute: '2-digit',
-                  hour12: true,
-                })}
-              </p>
+            <div className="flex items-center gap-4">
+              <ThemeSelector />
+              <div className="text-right">
+                <p className="text-white/70 text-sm">Last updated</p>
+                <p className="text-white font-medium">
+                  {new Date(data.current.time).toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true,
+                  })}
+                </p>
+              </div>
             </div>
           </div>
           

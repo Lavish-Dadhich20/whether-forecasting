@@ -7,7 +7,9 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root {
+  /* White Theme (Default) */
+  :root,
+  [data-theme="white"] {
     --background: 210 100% 97%;
     --foreground: 220 20% 20%;
 
@@ -66,38 +68,106 @@ All colors MUST be HSL.
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .dark {
-    --background: 220 25% 12%;
-    --foreground: 210 40% 98%;
+  /* Black Theme */
+  [data-theme="black"] {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 220 20% 16%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 220 20% 16%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 85% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 25 95% 60%;
+    --secondary: 0 0% 20%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 20% 20%;
-    --muted-foreground: 210 20% 65%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 200 90% 65%;
+    --accent: 0 0% 25%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 50%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 22%;
-    --input: 220 20% 22%;
-    --ring: 210 85% 55%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+
+    /* Weather-specific tokens */
+    --sky-clear: 0 0% 80%;
+    --sky-cloudy: 0 0% 60%;
+    --sky-rainy: 0 0% 40%;
+    --sky-stormy: 0 0% 25%;
+    --sunset: 0 0% 50%;
+    --sunrise: 0 0% 60%;
+    --night: 0 0% 15%;
     
-    /* Glass effects for dark mode */
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.12);
+    /* Gradients - Dark monochrome */
+    --gradient-clear: linear-gradient(135deg, hsl(0, 0%, 20%) 0%, hsl(0, 0%, 35%) 100%);
+    --gradient-cloudy: linear-gradient(135deg, hsl(0, 0%, 15%) 0%, hsl(0, 0%, 25%) 100%);
+    --gradient-rainy: linear-gradient(135deg, hsl(0, 0%, 10%) 0%, hsl(0, 0%, 20%) 100%);
+    --gradient-sunset: linear-gradient(135deg, hsl(0, 0%, 18%) 0%, hsl(0, 0%, 28%) 50%, hsl(0, 0%, 15%) 100%);
+    --gradient-night: linear-gradient(135deg, hsl(0, 0%, 8%) 0%, hsl(0, 0%, 15%) 100%);
+    
+    /* Glass effects for black theme */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Blue Theme */
+  [data-theme="blue"] {
+    --background: 220 70% 8%;
+    --foreground: 210 95% 95%;
+
+    --card: 220 60% 12%;
+    --card-foreground: 210 95% 95%;
+
+    --popover: 220 60% 12%;
+    --popover-foreground: 210 95% 95%;
+
+    --primary: 210 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 95% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 50% 18%;
+    --muted-foreground: 210 40% 70%;
+
+    --accent: 195 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 50% 22%;
+    --input: 220 50% 22%;
+    --ring: 210 100% 60%;
+
+    /* Weather-specific tokens - Blue tinted */
+    --sky-clear: 200 90% 65%;
+    --sky-cloudy: 210 40% 55%;
+    --sky-rainy: 220 50% 45%;
+    --sky-stormy: 230 60% 30%;
+    --sunset: 195 85% 55%;
+    --sunrise: 185 90% 65%;
+    --night: 235 70% 20%;
+    
+    /* Gradients - Blue themed */
+    --gradient-clear: linear-gradient(135deg, hsl(200, 90%, 45%) 0%, hsl(210, 95%, 55%) 100%);
+    --gradient-cloudy: linear-gradient(135deg, hsl(210, 50%, 35%) 0%, hsl(220, 45%, 45%) 100%);
+    --gradient-rainy: linear-gradient(135deg, hsl(220, 60%, 30%) 0%, hsl(230, 65%, 40%) 100%);
+    --gradient-sunset: linear-gradient(135deg, hsl(195, 85%, 45%) 0%, hsl(210, 90%, 55%) 50%, hsl(230, 70%, 40%) 100%);
+    --gradient-night: linear-gradient(135deg, hsl(235, 70%, 18%) 0%, hsl(225, 60%, 25%) 100%);
+    
+    /* Glass effects for blue theme */
+    --glass-bg: rgba(100, 180, 255, 0.12);
+    --glass-border: rgba(100, 180, 255, 0.2);
   }
 }
 
