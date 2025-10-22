@@ -6,6 +6,7 @@ import { HourlyForecast } from "@/components/HourlyForecast";
 import { DailyForecast } from "@/components/DailyForecast";
 import { WeatherDetails } from "@/components/WeatherDetails";
 import { TemperatureChart } from "@/components/TemperatureChart";
+import { CitySearch } from "@/components/CitySearch";
 import { MapPin, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -77,29 +78,41 @@ const Index = () => {
 
   const gradient = getWeatherGradient(data.current.weather_code, data.current.is_day === 1);
 
+  const handleLocationSelect = (newLocation: { lat: number; lon: number; name: string }) => {
+    setLocation(newLocation);
+    toast.success(`Location changed to ${newLocation.name}`);
+  };
+
   return (
     <div className={`min-h-screen ${gradient} transition-all duration-1000`}>
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8 animate-slide-up">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white text-shadow mb-2">
-              Weather Forecast
-            </h1>
-            <div className="flex items-center gap-2 text-white/90">
-              <MapPin size={20} />
-              <span className="text-lg">{location.name}</span>
+        <div className="flex flex-col gap-6 mb-8 animate-slide-up">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white text-shadow mb-2">
+                Weather Forecast
+              </h1>
+              <div className="flex items-center gap-2 text-white/90">
+                <MapPin size={20} />
+                <span className="text-lg">{location.name}</span>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-white/70 text-sm">Last updated</p>
+              <p className="text-white font-medium">
+                {new Date(data.current.time).toLocaleTimeString('en-US', {
+                  hour: 'numeric',
+                  minute: '2-digit',
+                  hour12: true,
+                })}
+              </p>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-white/70 text-sm">Last updated</p>
-            <p className="text-white font-medium">
-              {new Date(data.current.time).toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true,
-              })}
-            </p>
+          
+          {/* City Search */}
+          <div className="flex justify-center">
+            <CitySearch onLocationSelect={handleLocationSelect} />
           </div>
         </div>
 
